@@ -5,12 +5,19 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "start": "node build/server.js",
     "build": "tsup src --out-dir build",
-    "test": "vitest run",
-    "test:watch": "vitest",
+    "start": "node build/server.js",
+    "test": "vitest",
+    "test:no-repeat": "vitest run",
+    "test:unit": "vitest --dir src/use-cases",
+    "test:e2e": "vitest run --dir src/http",
+    "test:unit:no-repeat": "vitest run --dir src/use-cases",
+    "test:e2e:no-repeat": "vitest run --dir src/http",
+    "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage"
+    "test:ui:unit": "vitest --ui --dir src/use-cases",
+    "test:ui:e2e": "vitest --ui --dir src/http",
+    "db": "prisma studio"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +37,7 @@
     "vitest": "1.3.1"
   },
   "dependencies": {
+    "@fastify/jwt": "8.0.0",
     "@prisma/client": "5.10.2",
     "bcryptjs": "2.4.3",
     "dayjs": "1.11.10",
