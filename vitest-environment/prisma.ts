@@ -13,8 +13,6 @@ function generateDatabaseURL(schema: string) {
 
   url.searchParams.set('schema', schema)
 
-  console.log(url)
-
   return url.toString()
 }
 
@@ -31,7 +29,9 @@ export default <Environment>{
 
     return {
       async teardown() {
-        await prisma.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`)
+        await prisma.$executeRawUnsafe(
+          `DROP SCHEMA IF EXISTS "${schema}" CASCADE`,
+        )
 
         await prisma.$disconnect()
       },
