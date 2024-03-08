@@ -1,15 +1,3 @@
-<style>
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
-  }
-</style>
-
 <div align="center">
 
 <img width="150px" src="./.github/images/logo.png"/>
@@ -147,8 +135,12 @@ Here you can see all the endpoints of the application
 <br><br>
 
 - ```PATCH - '/token/refresh'```
-  - This the route where, if you have a refresh token, we will generate another JWT Token.
+  - This route will check if the user has an access token. If not, it will try to create another one based on the refresh token located in cookies. You must send the requisition with the access token as authorization (if you have one).
   <br><br>
+
+    | Header           | Type       | 
+    | :---             | :---       | 
+    | `Authorization`  | **Bearer** |
 
 <br><br>
 
@@ -254,7 +246,7 @@ On ***Check Ins***, every route needs to be authenticated.
 <br><br>
 
 - ```POST - '/gyms/:gymId/check-ins'```
-  - Here we can create a check-in on a gym. You must provide on the URL param the id of the gym as **gymID** and on the body of the request the **latitude** and **longitude** of the user as a JSON
+  - Here we can create a check-in on a gym. You must provide on the URL param the id of the gym as **gymID** and on the body of the request the **latitude** and **longitude** of the user as a JSON.
 
     | Params         | Type       | Default  |
     | :---           | :---       | :---     |
